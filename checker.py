@@ -25,6 +25,34 @@ if single == "Scan":
                 
         
     with open("baseline.json", "w") as file:
-        json_file = json.dump(hashes, file, indent=4)
-                
+        json.dump(hashes, file, indent=4)
+        
+elif single == "Check":
+    directory = input("Directory to check: ")
     
+    with open("baseline.json", "r") as file:
+        baseline = json.load(file)
+
+    for file_path in baseline:
+        file_exists = os.path.exists(file_path)
+        
+        if file_exists:
+            
+            with open(file_path, "rb") as opened_file:
+                content = opened_file.read()
+                current_file_hash = hashlib.sha256(content).hexdigest()
+                
+                if baseline[file_path] == current_file_hash:
+                    print(f"{file_path}", ":", "OK")
+                else:
+                    print(f"{file_path}", ":", "Changed")
+                    
+        elif not file_exists:
+            print(f"{file_path}", ":", "Deleted!")
+            
+    for root, directories, files in os.walk(directory):
+        for filename in files:
+            full_path = os.path.join(root, filename)
+                
+            if full_path not in baseline:
+                print(f"{full_path} : NEW!")
