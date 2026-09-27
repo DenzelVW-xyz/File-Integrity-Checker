@@ -22,7 +22,7 @@ This project was created as a way to learn more about Python, file handling, has
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR-REPOSITORY-URL>
+git clone https://github.com/DenzelVW-xyz/File-Integrity-Checker.git
 cd File-Integrity-Checker
 ```
 
