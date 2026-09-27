@@ -10,7 +10,7 @@ single = selected.run()
 print(f"You selected: {single}")
 
 if single == "Scan":
-    directory = input("Directory to scan: ")
+    directory = os.path.expanduser(input("Directory to scan: "))
     
     hashes = {}
     
@@ -28,7 +28,7 @@ if single == "Scan":
         json.dump(hashes, file, indent=4)
         
 elif single == "Check":
-    directory = input("Directory to check: ")
+    directory = os.path.expanduser(input("Directory to check: "))
     
     with open("baseline.json", "r") as file:
         baseline = json.load(file)
