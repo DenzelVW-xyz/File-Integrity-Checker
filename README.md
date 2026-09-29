@@ -140,19 +140,6 @@ File-Integrity-Checker/
 - `json`
 - `select-options`
 
-## 🗺️ Future Ideas
-
-- Better error handling
-- Colored terminal output
-- Scan statistics
-- Ignore specific files or directories
-- Multiple saved baselines
-- Large-file hashing improvements
-- Exportable scan reports
-- Command-line arguments
-- Logging
-- Progress indicators
-
 ## ⚠️ Disclaimer
 
 This project is primarily intended for learning and experimentation. It should not be treated as a replacement for professional file-integrity monitoring or security software.
