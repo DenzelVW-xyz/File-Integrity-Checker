@@ -1,2 +1,3 @@
 .venv/
 baseline.json
+__pycache__/
