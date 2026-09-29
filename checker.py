@@ -2,6 +2,24 @@ import os
 import hashlib
 import json
 from select_options import Select
+
+RED = "\033[31m"
+BLUE = "\033[34m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+RESET = "\033[0m"
+
+
+def colorize(label, message):
+    colors = {
+        "Deleted": RED,
+        "Changed": BLUE,
+        "OK": GREEN,
+        "NEW": YELLOW,
+    }
+    return f"{colors.get(label, '')}{message}{RESET}"
+
+
 options = ["Scan", "Check"]
 
 selected = Select(options, prompt="Choose an option")
@@ -43,16 +61,16 @@ elif single == "Check":
                 current_file_hash = hashlib.sha256(content).hexdigest()
                 
                 if baseline[file_path] == current_file_hash:
-                    print(f"{file_path}", ":", "OK")
+                    print(f"{file_path} : {colorize('OK', 'OK')}")
                 else:
-                    print(f"{file_path}", ":", "Changed")
-                    
+                    print(f"{file_path} : {colorize('Changed', 'Changed')}")
+
         elif not file_exists:
-            print(f"{file_path}", ":", "Deleted!")
-            
+            print(f"{file_path} : {colorize('Deleted', 'Deleted!')}")
+
     for root, directories, files in os.walk(directory):
         for filename in files:
             full_path = os.path.join(root, filename)
-                
+
             if full_path not in baseline:
-                print(f"{full_path} : NEW!")
+                print(f"{full_path} : {colorize('NEW', 'NEW!')}")
