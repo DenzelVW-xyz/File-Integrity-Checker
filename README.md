@@ -129,7 +129,7 @@ File-Integrity-Checker/
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-└── baseline.json      # Generated locally and ignored by Git
+└── baseline.json
 ```
 
 ## 🛠️ Built With
